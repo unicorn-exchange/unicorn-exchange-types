@@ -20,8 +20,14 @@ export interface ICryptoCurrencyRes {
   title: string;
 }
 
+export interface ICountryRes {
+  id: number;
+  title: string;
+}
+
 export interface IGlobalSettingsRes {
   cryptoCurrencies: ICryptoCurrencyRes[];
+  countries: ICountryRes[];
 }
 
 export interface ISignUpRes extends ICommonResponse {
