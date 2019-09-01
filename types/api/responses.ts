@@ -25,9 +25,15 @@ export interface ICountryRes {
   title: string;
 }
 
+export interface IPaymentMethodRes {
+  id: number;
+  title: string;
+}
+
 export interface IGlobalSettingsRes {
   cryptoCurrencies: ICryptoCurrencyRes[];
   countries: ICountryRes[];
+  paymentMethods: IPaymentMethodRes[];
 }
 
 export interface ISignUpRes extends ICommonResponse {
