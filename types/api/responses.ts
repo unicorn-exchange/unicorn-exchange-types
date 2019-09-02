@@ -30,7 +30,7 @@ export interface IPaymentMethodRes {
   title: string;
 }
 
-export interface IGlobalSettingsRes {
+export interface ISettingsCommonRes extends ICommonResponse {
   cryptoCurrencies: ICryptoCurrencyRes[];
   countries: ICountryRes[];
   paymentMethods: IPaymentMethodRes[];
