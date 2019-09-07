@@ -1,4 +1,4 @@
-export const enum OrdersCreateFields {
+export enum OrdersCreateFields {
   countryId = "countryId",
   cryptoCurrencySellId = "cryptoCurrencySellId",
   cryptoCurrencySellPrice = "cryptoCurrencySellPrice",
