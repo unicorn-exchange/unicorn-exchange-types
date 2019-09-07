@@ -1,6 +1,6 @@
 {
   "name": "types",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "types",
   "main": "src/app.ts",
   "scripts": {},
@@ -24,9 +24,8 @@
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.27",
-    "@types/hapi__joi": "^15.0.3",
     "@types/node": "^12.7.2",
-    "@types/validator": "^10.11.3",
+    "@types/yup": "^0.26.23",
     "reflect-metadata": "^0.1.13",
     "typescript": "^3.5.3"
   }
