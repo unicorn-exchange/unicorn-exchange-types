@@ -1,5 +1,5 @@
 import {IOrdersCreateReq, ISignUpUserReq} from "./requests";
-import {ValidationError} from "@hapi/joi";
+import {ValidationError} from "yup";
 
 export interface ICommonRes {
   ok: boolean;
