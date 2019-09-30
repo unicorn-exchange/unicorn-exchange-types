@@ -5,6 +5,7 @@ export const signInValidationScheme = {
   [signInFields.email]: yup
     .string()
     .email()
+    .nullable()
     .required(),
-  [signInFields.password]: yup.string().required(),
+  [signInFields.password]: yup.string().nullable().required(),
 };
