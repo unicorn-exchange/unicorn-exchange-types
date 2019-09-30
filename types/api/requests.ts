@@ -1,20 +1,4 @@
-import {ordersCreateFields} from "../enums/forms/orders-create";
-
-export interface IOrdersCreateReq {
-  [ordersCreateFields.countryId]: number;
-  [ordersCreateFields.cryptoCurrencySellId]: number;
-  [ordersCreateFields.cryptoCurrencySellPrice]: string;
-  [ordersCreateFields.cryptoCurrencyBuyId]: number;
-  [ordersCreateFields.cryptoCurrencyBuyPrice]: string;
-  [ordersCreateFields.paymentMethodId]: number;
-  [ordersCreateFields.bankName]: string;
-  [ordersCreateFields.marginProfit]: string;
-  [ordersCreateFields.isAutoAdjustTransactionLimit]: string;
-  [ordersCreateFields.termsOfTrade]: string;
-  [ordersCreateFields.isVerifiedUsersOnly]: string;
-  [ordersCreateFields.isTrustedUsersOnly]: string;
-  [ordersCreateFields.isIdentifyUsersBeforeContinueTrade]: string;
-}
+import {userDepositFields} from "../enums/forms/user-deposit";
 
 export interface IPagination {
   offset?: number;
@@ -31,4 +15,9 @@ export interface ISignInUserReq {
 
 export interface ISignUpUserReq extends ISignInUserReq {
   username: string;
+}
+
+export interface IDepositReq {
+  [userDepositFields.blockchainId]: number;
+  [userDepositFields.amount]: number;
 }
