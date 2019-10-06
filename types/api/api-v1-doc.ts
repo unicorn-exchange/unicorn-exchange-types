@@ -9,7 +9,7 @@ import {
   ISignUpRes,
 } from "./responses";
 import {IDepositReq, IOrdersReq, ISignInUserReq, ISignUpUserReq} from "./requests";
-import {IDBInstance, IOrderDTO} from "./dtos";
+import {IDBInstance, IFullOrderDTO, IOrderWriteDTO} from "./dtos";
 
 export const USERS_ME = "/users/me";
 export const USERS_DEPOSIT = "/users/deposit";
@@ -23,7 +23,8 @@ export const SETTINGS = "/settings";
 export const SETTINGS_COMMON = "/settings/common";
 
 // Orders
-export const ORDERS = "/orders";
+export const ORDERS_GET_ALL = "/orders";
+export const ORDERS_GET_ONE = "/orders/:id";
 export const ORDERS_CREATE = "/orders/create";
 export const ORDERS_REQUEST = "/orders/request";
 export const ORDERS_CONFIRM = "/orders/confirm";
@@ -72,16 +73,23 @@ export interface APIV1Doc {
     };
   };
 
-  [ORDERS]: {
+  [ORDERS_GET_ALL]: {
     GET: {
       query: IOrdersReq;
       response: IOrdersRes;
     };
   };
 
+  [ORDERS_GET_ONE]: {
+    GET: {
+      params: IDBInstance;
+      response: IFullOrderDTO;
+    };
+  };
+
   [ORDERS_CREATE]: {
     POST: {
-      body: IOrderDTO;
+      body: IOrderWriteDTO;
       response: IOrdersCreateRes;
     };
   };
@@ -89,7 +97,7 @@ export interface APIV1Doc {
   [ORDERS_REQUEST]: {
     GET: {
       query: IDBInstance;
-      response: IOrderDTO;
+      response: IOrderWriteDTO;
     };
   };
 

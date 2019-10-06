@@ -1,8 +1,8 @@
-import {Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
+import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
 import {UserModel} from "./user.model";
 import {CountryModel} from "./country.model";
 import {PaymentMethodModel} from "./payment-method.model";
-import {ordersCreateFields} from "../enums/forms/orders-create";
+import {orderCommonFields, orderWriteFields} from "../enums/forms/order";
 import {BlockchainModel} from "./blockchain.model";
 
 @Table({modelName: "orders"})
@@ -11,55 +11,70 @@ export class OrderModel extends Model<OrderModel> {
   @Column(DataType.INTEGER)
   ownerId!: number;
 
+  @BelongsTo(() => UserModel)
+  owner!: UserModel;
+
   @ForeignKey(() => BlockchainModel)
   @Column({
     type: DataType.INTEGER,
-    field: ordersCreateFields.cryptoCurrencyBuyId,
+    field: orderWriteFields.cryptoCurrencyBuyId,
   })
   cryptoCurrencyBuyId!: number;
 
+  @BelongsTo(() => BlockchainModel)
+  cryptoCurrencyBuy!: BlockchainModel;
+
   @Column({
     type: DataType.INTEGER,
-    field: ordersCreateFields.cryptoCurrencyBuyPrice,
+    field: orderCommonFields.cryptoCurrencyBuyPrice,
   })
   cryptoCurrencyBuyPrice!: number;
 
   @ForeignKey(() => BlockchainModel)
   @Column({
     type: DataType.INTEGER,
-    field: ordersCreateFields.cryptoCurrencySellId,
+    field: orderWriteFields.cryptoCurrencySellId,
   })
   cryptoCurrencySellId!: number;
 
+  @BelongsTo(() => BlockchainModel)
+  cryptoCurrencySell!: BlockchainModel;
+
   @Column({
     type: DataType.INTEGER,
-    field: ordersCreateFields.cryptoCurrencySellPrice,
+    field: orderCommonFields.cryptoCurrencySellPrice,
   })
   cryptoCurrencySellPrice!: number;
 
   @ForeignKey(() => CountryModel)
   @Column({
     type: DataType.INTEGER,
-    field: ordersCreateFields.countryId,
+    field: orderWriteFields.countryId,
   })
   countryId!: number;
+
+  @BelongsTo(() => CountryModel)
+  country!: CountryModel;
 
   @ForeignKey(() => PaymentMethodModel)
   @Column({
     type: DataType.INTEGER,
-    field: ordersCreateFields.paymentMethodId,
+    field: orderWriteFields.paymentMethodId,
   })
   paymentMethodId!: number;
 
+  @BelongsTo(() => PaymentMethodModel)
+  paymentMethod!: PaymentMethodModel;
+
   @Column({
     type: DataType.INTEGER,
-    field: ordersCreateFields.bankName,
+    field: orderCommonFields.bankName,
   })
   bankName!: string;
 
   @Column({
     type: DataType.INTEGER,
-    field: ordersCreateFields.marginProfit,
+    field: orderCommonFields.marginProfit,
   })
   marginProfit!: number;
 
@@ -74,31 +89,31 @@ export class OrderModel extends Model<OrderModel> {
 
   @Column({
     type: DataType.BOOLEAN,
-    field: ordersCreateFields.isAutoAdjustTransactionLimit,
+    field: orderCommonFields.isAutoAdjustTransactionLimit,
   })
   isAutoAdjustTransactionLimit!: boolean;
 
   @Column({
     type: DataType.BOOLEAN,
-    field: ordersCreateFields.isVerifiedUsersOnly,
+    field: orderCommonFields.isVerifiedUsersOnly,
   })
   isVerifiedUsersOnly!: boolean;
 
   @Column({
     type: DataType.BOOLEAN,
-    field: ordersCreateFields.isTrustedUsersOnly,
+    field: orderCommonFields.isTrustedUsersOnly,
   })
   isTrustedUsersOnly!: boolean;
 
   @Column({
     type: DataType.STRING,
-    field: ordersCreateFields.termsOfTrade,
+    field: orderCommonFields.termsOfTrade,
   })
   termsOfTrade!: string;
 
   @Column({
     type: DataType.BOOLEAN,
-    field: ordersCreateFields.isIdentifyUsersBeforeContinueTrade,
+    field: orderCommonFields.isIdentifyUsersBeforeContinueTrade,
   })
   isIdentifyUsersBeforeContinueTrade!: boolean;
 

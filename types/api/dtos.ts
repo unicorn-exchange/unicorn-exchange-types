@@ -1,26 +1,19 @@
-import {ordersCreateFields} from "../enums/forms/orders-create";
+import {orderCommonFields, orderReadFields, orderWriteFields} from "../enums/forms/order";
 
 export interface IDBInstance {
   id?: number;
 }
 
-export interface IOrderDTO extends IDBInstance {
-  [ordersCreateFields.countryId]: number;
-  [ordersCreateFields.cryptoCurrencySellId]: number;
-  [ordersCreateFields.cryptoCurrencySellPrice]: number;
-  [ordersCreateFields.cryptoCurrencyBuyId]: number;
-  [ordersCreateFields.cryptoCurrencyBuyPrice]: number;
-  [ordersCreateFields.paymentMethodId]: number;
-  [ordersCreateFields.bankName]: string;
-  [ordersCreateFields.marginProfit]: number;
-  [ordersCreateFields.termsOfTrade]: string;
-  [ordersCreateFields.isAutoAdjustTransactionLimit]: boolean;
-  [ordersCreateFields.isVerifiedUsersOnly]: boolean;
-  [ordersCreateFields.isTrustedUsersOnly]: boolean;
-  [ordersCreateFields.isIdentifyUsersBeforeContinueTrade]: boolean;
+export interface IUserDTO extends IDBInstance {
+  email: string;
+  username: string;
 }
 
 export interface ICryptoCurrencyDTO extends IDBInstance {
+  title: string;
+}
+
+export interface ICurrencyDTO extends IDBInstance {
   title: string;
 }
 
@@ -30,4 +23,36 @@ export interface ICountryDTO extends IDBInstance {
 
 export interface IPaymentMethodDTO extends IDBInstance {
   title: string;
+}
+
+export interface IOrderCommonDTO extends IDBInstance {
+  [orderCommonFields.cryptoCurrencySellPrice]: number;
+  [orderCommonFields.cryptoCurrencyBuyPrice]: number;
+  [orderCommonFields.bankName]: string;
+  [orderCommonFields.marginProfit]: number;
+  [orderCommonFields.termsOfTrade]: string;
+  [orderCommonFields.isAutoAdjustTransactionLimit]: boolean;
+  [orderCommonFields.isVerifiedUsersOnly]: boolean;
+  [orderCommonFields.isTrustedUsersOnly]: boolean;
+  [orderCommonFields.isIdentifyUsersBeforeContinueTrade]: boolean;
+}
+
+export interface IOrderWriteDTO extends IOrderCommonDTO {
+  [orderWriteFields.countryId]: number;
+  [orderWriteFields.cryptoCurrencySellId]: number;
+  [orderWriteFields.cryptoCurrencyBuyId]: number;
+  [orderWriteFields.paymentMethodId]: number;
+}
+
+export interface IFullOrderDTO extends IOrderCommonDTO {
+  [orderReadFields.owner]: IUserDTO;
+  [orderReadFields.cryptoCurrencyBuy]: ICryptoCurrencyDTO;
+  [orderReadFields.cryptoCurrencySell]: ICryptoCurrencyDTO;
+  [orderReadFields.currency]: ICurrencyDTO;
+  [orderReadFields.paymentMethod]: IPaymentMethodDTO;
+  [orderReadFields.country]: ICountryDTO;
+}
+
+// Order with less amount of data to reduce payload
+export interface IPartOrderDTO extends IFullOrderDTO {
 }
