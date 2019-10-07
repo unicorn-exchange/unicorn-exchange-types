@@ -6,13 +6,13 @@ export const ordersCreateValidationScheme = {
     .number()
     .nullable()
     .required(),
-  [orderWriteFields.cryptoCurrencySellId]: yup
+  [orderWriteFields.currencySell]: yup
     .number()
     .nullable()
     .required(),
-  [orderCommonFields.cryptoCurrencySellPrice]: yup.string().required(),
-  [orderWriteFields.cryptoCurrencyBuyId]: yup.number().required(),
-  [orderCommonFields.cryptoCurrencyBuyPrice]: yup
+  [orderCommonFields.currencySellPrice]: yup.string().required(),
+  [orderWriteFields.currencyBuy]: yup.number().required(),
+  [orderCommonFields.currencyBuyPrice]: yup
     .string()
     .nullable()
     .required(),
