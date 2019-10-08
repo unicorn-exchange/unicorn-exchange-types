@@ -8,6 +8,7 @@ export interface IDBInstance {
 export interface IUserDTO extends IDBInstance {
   email: string;
   username: string;
+  password: string;
   rating: number;
   dealsCount: number;
 }

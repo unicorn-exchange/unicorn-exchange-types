@@ -12,7 +12,7 @@ export class OrderModel extends Model<OrderModel> {
   @Column({
     type: DataType.INTEGER,
     field: orderWriteFields.ownerId,
-    comment: "User, who confirmed the order"
+    comment: "User, who confirmed the order",
   })
   ownerId!: number;
 
@@ -23,7 +23,7 @@ export class OrderModel extends Model<OrderModel> {
   @Column({
     type: DataType.INTEGER,
     field: orderReadFields.accepter,
-    comment: "User, who accepted the order"
+    comment: "User, who accepted the order",
   })
   accepterId!: number;
 
@@ -37,7 +37,7 @@ export class OrderModel extends Model<OrderModel> {
   })
   cryptoCurrencyBuyId!: number;
 
-  @BelongsTo(() => CryptoCurrencyModel)
+  @BelongsTo(() => CryptoCurrencyModel, "id")
   cryptoCurrencyBuy!: CryptoCurrencyModel;
 
   @ForeignKey(() => FiatModel)
@@ -47,7 +47,7 @@ export class OrderModel extends Model<OrderModel> {
   })
   fiatBuyId!: number;
 
-  @BelongsTo(() => FiatModel)
+  @BelongsTo(() => FiatModel, "id")
   fiatBuy!: FiatModel;
 
   @Column({
@@ -63,7 +63,7 @@ export class OrderModel extends Model<OrderModel> {
   })
   cryptoCurrencySellId!: number;
 
-  @BelongsTo(() => CryptoCurrencyModel)
+  @BelongsTo(() => CryptoCurrencyModel, "id")
   cryptoCurrencySell!: CryptoCurrencyModel;
 
   @ForeignKey(() => FiatModel)
@@ -73,7 +73,7 @@ export class OrderModel extends Model<OrderModel> {
   })
   fiatSellId!: number;
 
-  @BelongsTo(() => FiatModel)
+  @BelongsTo(() => FiatModel, "id")
   fiatSell!: FiatModel;
 
   @Column({

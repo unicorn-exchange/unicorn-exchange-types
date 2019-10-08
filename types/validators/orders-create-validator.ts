@@ -1,17 +1,38 @@
 import {orderCommonFields, orderWriteFields} from "../enums/forms/order";
 import * as yup from "yup";
+import {CurrencyTypes} from "../enums/currency-types";
 
 export const ordersCreateValidationScheme = {
   [orderWriteFields.countryId]: yup
     .number()
     .nullable()
     .required(),
-  [orderWriteFields.currencySell]: yup
+  [orderCommonFields.currencySell]: yup
+    .object()
+    .shape({
+      id: yup.number().required(),
+      type: yup
+        .string()
+        .oneOf([CurrencyTypes.cryptoCurrency, CurrencyTypes.fiat])
+        .required(),
+    })
+    .nullable()
+    .required(),
+  [orderCommonFields.currencySellPrice]: yup
     .number()
     .nullable()
     .required(),
-  [orderCommonFields.currencySellPrice]: yup.string().required(),
-  [orderWriteFields.currencyBuy]: yup.number().required(),
+  [orderCommonFields.currencyBuy]: yup
+    .object()
+    .shape({
+      id: yup.number().required(),
+      type: yup
+        .string()
+        .oneOf([CurrencyTypes.cryptoCurrency, CurrencyTypes.fiat])
+        .required(),
+    })
+    .nullable()
+    .required(),
   [orderCommonFields.currencyBuyPrice]: yup
     .string()
     .nullable()
@@ -24,7 +45,10 @@ export const ordersCreateValidationScheme = {
     .string()
     .nullable()
     .required(),
-  [orderCommonFields.marginProfit]: yup.string().required(),
+  [orderCommonFields.marginProfit]: yup
+    .number()
+    .nullable()
+    .required(),
   [orderCommonFields.isAutoAdjustTransactionLimit]: yup.boolean().nullable(),
   [orderCommonFields.termsOfTrade]: yup.string().nullable(),
   [orderCommonFields.isVerifiedUsersOnly]: yup.boolean().nullable(),
