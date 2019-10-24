@@ -45,10 +45,7 @@ export const ordersCreateValidationScheme = {
     .string()
     .nullable()
     .required(),
-  [orderCommonFields.marginProfit]: yup
-    .number()
-    .nullable()
-    .required(),
+  [orderCommonFields.marginProfit]: yup.number().nullable(),
   [orderCommonFields.isAutoAdjustTransactionLimit]: yup.boolean().nullable(),
   [orderCommonFields.termsOfTrade]: yup.string().nullable(),
   [orderCommonFields.isVerifiedUsersOnly]: yup.boolean().nullable(),
